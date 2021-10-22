@@ -9,6 +9,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import ch.zli.m223.crm.model.impl.AppUserImpl;
+import ch.zli.m223.crm.model.impl.CustomerImpl;
+import ch.zli.m223.crm.repository.CustomerRepository;
+import ch.zli.m223.crm.repository.MemoRepository;
 import ch.zli.m223.crm.repository.RoleRepository;
 import ch.zli.m223.crm.repository.UserRepository;
 
@@ -20,6 +23,12 @@ public class ServerInitializer implements ApplicationRunner{
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private MemoRepository memoRepository;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -36,6 +45,17 @@ public class ServerInitializer implements ApplicationRunner{
 		AppUserImpl prakti = userRepository.save(new AppUserImpl("Second", "SeconPW"));
 		roleRepository.setRoles(prakti, chefe);
 		userRepository.save(new AppUserImpl("Third", "ThirdPW"));
+		
+		List<String> memo = new ArrayList<>();
+		memo.add("ich bin es verficktes memo");
+		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
+		memoRepository.setMemos(customer, memo);
+		memo.clear();
+		
+		memo.add("ich bin szweite scheiss memo");
+		CustomerImpl customer2 = customerRepository.save(new CustomerImpl("penis", "in", "ass"));
+		memoRepository.setMemos(customer2, memo);
+		
 	}
 
 }
