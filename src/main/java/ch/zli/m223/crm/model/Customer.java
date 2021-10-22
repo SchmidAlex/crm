@@ -12,6 +12,6 @@ public interface Customer {
 	
 	String getCity();
 
-	List<String> getMemos();
+	List<Memo> getMemos();
 
 }

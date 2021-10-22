@@ -1,5 +1,8 @@
 package ch.zli.m223.crm.model.impl;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +24,14 @@ public class MemoImpl implements Memo{
 	@ManyToOne
 	private CustomerImpl customer;
 	
+	@Column(nullable = false)
+	private Date coverageDate;
+	
 	public MemoImpl(String memo, CustomerImpl customer) {
 		this.customer = customer;
 		this.memo = memo;
+		this.coverageDate = Calendar.getInstance().getTime();
+		System.out.println(coverageDate);
 	}
 	
 	protected MemoImpl() {
@@ -38,5 +46,9 @@ public class MemoImpl implements Memo{
 	@Override
 	public String getMemo() {
 		return memo;
+	}
+	
+	public Date getDate() {
+		return coverageDate;
 	}
 }

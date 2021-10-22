@@ -46,15 +46,11 @@ public class ServerInitializer implements ApplicationRunner{
 		roleRepository.setRoles(prakti, chefe);
 		userRepository.save(new AppUserImpl("Third", "ThirdPW"));
 		
-		List<String> memo = new ArrayList<>();
-		memo.add("ich bin es verficktes memo");
-		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
-		memoRepository.setMemos(customer, memo);
-		memo.clear();
 		
-		memo.add("ich bin szweite scheiss memo");
-		CustomerImpl customer2 = customerRepository.save(new CustomerImpl("penis", "in", "ass"));
-		memoRepository.setMemos(customer2, memo);
+		
+		
+		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
+		memoRepository.setMemos(customer, "blablabla");
 		
 	}
 

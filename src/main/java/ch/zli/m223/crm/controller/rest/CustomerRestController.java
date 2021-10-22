@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.crm.controller.rest.dto.CustomerDto;
 import ch.zli.m223.crm.controller.rest.dto.CustomerInputDto;
+import ch.zli.m223.crm.controller.rest.dto.MemoInputDto;
 import ch.zli.m223.crm.model.Customer;
 import ch.zli.m223.crm.service.CustomerService;
 
@@ -41,7 +42,7 @@ public class CustomerRestController {
 	}
 	
 	@PostMapping("")
-	public CustomerDto addUser(@RequestBody CustomerInputDto customer) {
+	public CustomerDto addCustomer(@RequestBody CustomerInputDto customer) {
 		return new CustomerDto(customerService.addCustomer(customer.name, customer.street, customer.city));
 	}
 
@@ -51,9 +52,9 @@ public class CustomerRestController {
 	}
 	
 	@PostMapping("/{id}/memos")
-	public CustomerDto addMemo(@PathVariable("id") long id, @RequestBody List<String> memos) {
+	public CustomerDto addMemo(@PathVariable("id") long id, @RequestBody MemoInputDto memos) {
 		
-		return new CustomerDto(customerService.setMemosForCustomer(id, memos));
+		return new CustomerDto(customerService.setMemosForCustomer(id, memos.memo));
 	}
 	
 	@DeleteMapping("/{id}/memos")

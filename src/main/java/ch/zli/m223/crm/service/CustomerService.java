@@ -18,5 +18,5 @@ public interface CustomerService {
 	
 	Customer addCustomer(String name, String street, String city);
 
-	Customer setMemosForCustomer(long id, List<String> memos);
+	Customer setMemosForCustomer(long id, String memos);
 }

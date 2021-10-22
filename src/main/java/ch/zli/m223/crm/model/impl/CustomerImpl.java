@@ -2,7 +2,6 @@ package ch.zli.m223.crm.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import ch.zli.m223.crm.model.Customer;
+import ch.zli.m223.crm.model.Memo;
 
 @Entity(name = "Customer")
 public class CustomerImpl implements Customer{
@@ -57,11 +57,8 @@ public class CustomerImpl implements Customer{
 	}
 
 	@Override
-	public List<String> getMemos() {
-		return memos.stream().map((MemoImpl memo ) -> {
-			return memo.getMemo();
-		})
-		.collect(Collectors.toList());
+	public List<Memo> getMemos() {
+		return new ArrayList<>(memos);
 	}
 
 	@Override

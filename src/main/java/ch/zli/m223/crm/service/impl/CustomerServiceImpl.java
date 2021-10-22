@@ -54,11 +54,12 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Customer setMemosForCustomer(long id, List<String> memos) {
+	public Customer setMemosForCustomer(long id, String memos) {
 		Customer customer = getCustomerById(id); //Parameter check
 		if (memos == null) {
 			throw new InvalidParamException();
 		}
+		
 		return memoRepository.setMemos(customer, memos);
 	}
 

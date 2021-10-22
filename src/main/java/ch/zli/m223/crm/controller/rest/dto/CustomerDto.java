@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.zli.m223.crm.model.Customer;
+import ch.zli.m223.crm.model.Memo;
 
 public class CustomerDto {
 	public long id;
 	public String name;
 	public String street;
 	public String city;
-	public List<String> memos = new ArrayList<>();
+	public List<Memo> memos = new ArrayList<>();
 	
 	public CustomerDto(Customer customer) {
 		this.id = customer.getId();
