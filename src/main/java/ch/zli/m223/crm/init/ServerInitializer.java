@@ -14,6 +14,7 @@ import ch.zli.m223.crm.repository.CustomerRepository;
 import ch.zli.m223.crm.repository.MemoRepository;
 import ch.zli.m223.crm.repository.RoleRepository;
 import ch.zli.m223.crm.repository.UserRepository;
+import ch.zli.m223.crm.role.Roles;
 
 @Component
 public class ServerInitializer implements ApplicationRunner{
@@ -32,22 +33,23 @@ public class ServerInitializer implements ApplicationRunner{
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		List<String> chefe = new ArrayList<>();
-		chefe.add("El Chefe");
-		chefe.add("El Arschloche");
-		AppUserImpl user = userRepository.save(new AppUserImpl("Alexmail", "AlexPasswort"));
-		roleRepository.setRoles(user, chefe);
-		chefe.clear();
+		List<String> roles = new ArrayList<>();
 		
-		chefe.add("Lehrling");
-		chefe.add("Prakti");
+		roles.clear();
+		roles.add(Roles.USER);
+		AppUserImpl user = userRepository.save(new AppUserImpl("user", "user"));
+		roleRepository.setRoles(user, roles);
 		
-		AppUserImpl prakti = userRepository.save(new AppUserImpl("Second", "SeconPW"));
-		roleRepository.setRoles(prakti, chefe);
-		userRepository.save(new AppUserImpl("Third", "ThirdPW"));
+		roles.clear();
+		roles.add(Roles.ADMIN);
+		user = userRepository.save(new AppUserImpl("admin", "admin"));
+		roleRepository.setRoles(user, roles);
 		
-		
-		
+		roles.clear();
+		roles.add(Roles.ADMIN);
+		roles.add(Roles.USER);
+		user = userRepository.save(new AppUserImpl("usmin", "usmin"));
+		roleRepository.setRoles(user, roles);
 		
 		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
 		memoRepository.setMemos(customer, "blablabla");
