@@ -3,6 +3,8 @@ package ch.zli.m223.crm.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -31,29 +33,38 @@ public class ServerInitializer implements ApplicationRunner{
 	@Autowired
 	private MemoRepository memoRepository;
 	
+	@Transactional
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		List<String> roles = new ArrayList<>();
 		
+		AppUserImpl user;
+		AppUserImpl user2;
+		AppUserImpl user3;
+		
 		roles.clear();
 		roles.add(Roles.USER);
-		AppUserImpl user = userRepository.save(new AppUserImpl("user", "user"));
+		user = userRepository.save(new AppUserImpl("user", "user"));
 		roleRepository.setRoles(user, roles);
+		//userRepository.save(user);
 		
 		roles.clear();
 		roles.add(Roles.ADMIN);
-		user = userRepository.save(new AppUserImpl("admin", "admin"));
-		roleRepository.setRoles(user, roles);
+		user2 = userRepository.save(new AppUserImpl("admin", "admin"));
+		roleRepository.setRoles(user2, roles);
+		//userRepository.save(user2);
 		
 		roles.clear();
 		roles.add(Roles.ADMIN);
 		roles.add(Roles.USER);
-		user = userRepository.save(new AppUserImpl("usmin", "usmin"));
-		roleRepository.setRoles(user, roles);
+		user3 = userRepository.save(new AppUserImpl("usmin", "usmin"));
+		roleRepository.setRoles(user3, roles);
+		//userRepository.save(user3);
 		
 		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
 		memoRepository.setMemos(customer, "blablabla");
 		
+		roles.clear();
 	}
 
 }

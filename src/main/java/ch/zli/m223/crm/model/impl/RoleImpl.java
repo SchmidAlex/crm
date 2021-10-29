@@ -15,7 +15,7 @@ public class RoleImpl implements Role{
 	@GeneratedValue //makes an auto-increment on the id
 	private Long id;
 	
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String role;
 	
 	@ManyToOne
