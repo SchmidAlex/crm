@@ -48,7 +48,7 @@ Verwaltung von Users und Customers
 Die Daten der Datenbank werden in einem Init-Ordner eingefügt. Diese Daten wurden nur für Testzwecken verwendet.
 
 ### Using the CRM
-Wenn das CRM läuft, kann man sich mit einem User auf * http://localhost:8080/login anmelden. Anschliessend kann man auf die Seite * http://localhost:8080/web/users oder * http://localhost:8080/web/customers gehen um entweder die Users oder Customers einzusehen.
+Wenn das CRM läuft, kann man sich mit einem User auf http://localhost:8080/login anmelden. Anschliessend kann man auf die Seite http://localhost:8080/web/users oder http://localhost:8080/web/customers gehen um entweder die Users oder Customers einzusehen.
 
 Von dort aus, hat man Verlinkungen um einzelne Customers oder Users einzusehen. Ebenfalls kann man neue hinzufügen.
 
