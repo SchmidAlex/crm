@@ -41,28 +41,32 @@ public class ServerInitializer implements ApplicationRunner{
 		AppUserImpl user;
 		AppUserImpl user2;
 		AppUserImpl user3;
+		AppUserImpl user4;
 		
 		roles.clear();
 		roles.add(Roles.USER);
 		user = userRepository.save(new AppUserImpl("user", "user"));
 		roleRepository.setRoles(user, roles);
-		//userRepository.save(user);
 		
 		roles.clear();
 		roles.add(Roles.ADMIN);
 		user2 = userRepository.save(new AppUserImpl("admin", "admin"));
 		roleRepository.setRoles(user2, roles);
-		//userRepository.save(user2);
 		
 		roles.clear();
 		roles.add(Roles.ADMIN);
 		roles.add(Roles.USER);
 		user3 = userRepository.save(new AppUserImpl("usmin", "usmin"));
 		roleRepository.setRoles(user3, roles);
-		//userRepository.save(user3);
+		
+		user4 = userRepository.save(new AppUserImpl("alex", "ultrasavepassword"));
+		roleRepository.setRoles(user4, roles);
 		
 		CustomerImpl customer = customerRepository.save(new CustomerImpl("Name", "Street", "City"));
-		memoRepository.setMemos(customer, "blablabla");
+		memoRepository.setMemos(customer, "seriöses gespräch");
+		
+		customer = customerRepository.save(new CustomerImpl("Max Werner", "ZLI", "Zürich"));
+		memoRepository.setMemos(customer, "LB Besprechung erfolgreich");
 		
 		roles.clear();
 	}
