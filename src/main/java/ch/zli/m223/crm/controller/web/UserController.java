@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.zli.m223.crm.model.AppUser;
 import ch.zli.m223.crm.service.UserService;
@@ -45,8 +46,8 @@ public class UserController {
 		return "addUserForm";
 	}
 	
-	@GetMapping("/adduser")
-	public String addAnUser(Model model, @RequestBody String email, @RequestBody String password) {
+	@PostMapping("/adduser")
+	public String addAnUser(Model model, @RequestParam String email, @RequestParam String password) {
 		userService.addUser(email, password);
 		return getAllUsers(model);
 	}

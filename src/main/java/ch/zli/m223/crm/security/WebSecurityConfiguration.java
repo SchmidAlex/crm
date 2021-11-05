@@ -1,5 +1,6 @@
 package ch.zli.m223.crm.security;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -48,11 +49,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	private void configureWeb(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-			.antMatchers("/web/users/**").hasAuthority(Roles.ADMIN)
+			.antMatchers("/web/**").hasAuthority(Roles.ADMIN)
+			.antMatchers(HttpMethod.POST, "/web/**").hasAuthority(Roles.ADMIN)
 			.antMatchers("/").permitAll()
 			.anyRequest().authenticated()
 			.and().formLogin().permitAll()
 			.and().logout().permitAll()
+			.and().csrf().disable()
 		;
 	}
 }
