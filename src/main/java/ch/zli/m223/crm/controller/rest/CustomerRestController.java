@@ -18,6 +18,9 @@ import ch.zli.m223.crm.controller.rest.dto.MemoInputDto;
 import ch.zli.m223.crm.model.Customer;
 import ch.zli.m223.crm.service.CustomerService;
 
+/**
+ * This is the rest-controller for customers
+ */
 @RestController
 @RequestMapping("/api/v0/customers")
 public class CustomerRestController {
@@ -25,6 +28,7 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//Get a list of all customers
 	@GetMapping("")
 	public List<CustomerDto> getAllCustomers() {
 		List<Customer> customers = customerService.getAllCustomers();
@@ -36,27 +40,31 @@ public class CustomerRestController {
 			}).collect(Collectors.toList());
 	}
 	
+	//get every information of one customer (by id)
 	@GetMapping("/{id}")
 	public CustomerDto getCustomerById(@PathVariable("id") long id) {
 		return new CustomerDto(customerService.getCustomerById(id));
 	}
 	
+	//add an new customer with a post
 	@PostMapping("")
 	public CustomerDto addCustomer(@RequestBody CustomerInputDto customer) {
 		return new CustomerDto(customerService.addCustomer(customer.name, customer.street, customer.city));
 	}
 
+	//delete an customer by his id
 	@DeleteMapping("/{id}")
-	public void deleteUserById(@PathVariable("id") long id) {
+	public void deleteCustomerById(@PathVariable("id") long id) {
 		customerService.deleteById(id);
 	}
 	
+	//add an new memo to an customer
 	@PostMapping("/{id}/memos")
 	public CustomerDto addMemo(@PathVariable("id") long id, @RequestBody MemoInputDto memos) {
 		
 		return new CustomerDto(customerService.setMemosForCustomer(id, memos.memo));
 	}
-	
+
 	@DeleteMapping("/{id}/memos")
 	public void deleteRole(@PathVariable("id") long id) {
 		

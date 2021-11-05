@@ -30,8 +30,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//configureWeb(http);
-		configureRest(http);
+		configureWeb(http);
+		//configureRest(http);
 	}
 
 	private void configureRest(HttpSecurity http) throws Exception{
@@ -48,7 +48,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	private void configureWeb(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-			.antMatchers("/web/users").hasAuthority(Roles.ADMIN)
+			.antMatchers("/web/users/**").hasAuthority(Roles.ADMIN)
 			.antMatchers("/").permitAll()
 			.anyRequest().authenticated()
 			.and().formLogin().permitAll()

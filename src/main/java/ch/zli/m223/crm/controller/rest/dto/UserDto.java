@@ -5,6 +5,9 @@ import java.util.List;
 
 import ch.zli.m223.crm.model.AppUser;
 
+/**
+ * This is an DTO to render the information we want to show of an user
+ */
 public class UserDto {
 	public long id;
 	public String email;

@@ -27,9 +27,15 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/{id}")
-	public String getAllMemosOfCustomer(@PathVariable("id") long id, Model model) {
+	public String getOneCustomerById(@PathVariable("id") long id, Model model) {
 		Customer customer = customerService.getCustomerById(id);
 		model.addAttribute("customer", customer);
 		return "customer";
+	}
+	
+	@GetMapping("/{id}/delete")
+	public String deleteCustomer(@PathVariable("id") long id, Model model) {
+		customerService.deleteById(id);
+		return getAllCustomers(model);
 	}
 }
