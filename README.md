@@ -1,7 +1,7 @@
 # 223 Multi-User-Applikationen objektorientiert realisieren
 
 
-Multi-User-Applikation objektorientiert entwerfen, erforderliche Datenbankanpassungen vornehmen und Applikation implementieren, testen und dokumentieren.
+Ziel der Applikation ist es, Kundendaten, und zu jedem Kunden eine Liste von Gesprächsnotizen zu verwalten. Diese Daten sollen in einem Webbrowser angezeigt und verwaltet werden können.
 
 ## Handlungsziele
 
@@ -26,14 +26,30 @@ Auflistung Users in JSON
 Auflistung Users UI
 * http://localhost:8080/web/users
 
+Auflistung Customers UI
+* http://localhost:8080/web/customers
+
 Auflistung Customers in JSON
 * http://localhost:8080/api/v0/customers
 
 Anzeige User 1 spezifisch in JSON
 * http://localhost:8080/api/v0/users/1
 
+Anzeige Customer 1 spezifisch in JSON
+* http://localhost:8080/api/v0/customers/1
+
 ### Starting the Application
 Eclipse Run oder F5
 
 ### Usage
 Verwaltung von Users und Customers
+
+### Initializing
+Die Daten der Datenbank werden in einem Init-Ordner eingefügt. Diese Daten wurden nur für Testzwecken verwendet.
+
+### Using the CRM
+Wenn das CRM läuft, kann man sich mit einem User auf * http://localhost:8080/login anmelden. Anschliessend kann man auf die Seite * http://localhost:8080/web/users oder * http://localhost:8080/web/customers gehen um entweder die Users oder Customers einzusehen.
+
+Von dort aus, hat man Verlinkungen um einzelne Customers oder Users einzusehen. Ebenfalls kann man neue hinzufügen.
+
+Um einen Customer oder User zu löschen, gibt es eine Verlinkung auf der Single-Ansicht.
