@@ -2,6 +2,7 @@ package ch.zli.m223.crm.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,7 +59,7 @@ public class CustomerImpl implements Customer{
 
 	@Override
 	public List<Memo> getMemos() {
-		return new ArrayList<>(memos);
+		return memos.stream().map((memo)->{return memo;}).collect(Collectors.toList());
 	}
 
 	@Override
